@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container is-max-desktop has-text-success-light is-size-1 is-capitalized">
+  Your Gallery
+</div>
+
+<div class="container">
+    {% for filename in os.listdir(images_folder) %}
+        <article class="media is-hovered">
+          <figure class="media-left">
+              <a href="/images/{{filename}}">
+                <p class="image is-100x100">
+                  <img src="/static/uploads/{{current_user_name}}/thumbnails/{{filename}}">
+                </p>
+              </a>
+          </figure>
+          <div class="media-content ml-6">
+            <div class="content">
+              <p>
+                <strong>{{filename.split('.',1)[0].split('_',1)[1]}}</strong>
+              </p>
+            </div>
+          </div>
+        </article>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container is-max-desktop has-text-success-light is-size-1 is-capitalized">
+  Upload Image
+</div>
+
+<div class="container is-max-desktop has-text-success-light is-size-5 mb-6 pb-6">
+  Drag & Drop or Use the button below.
+</div>
+
+<div class="column is-4 is-offset-4">
+    <div class="box">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="notification is-danger">
+            {{ messages[0] }}
+          </div>
+        {% endif %}
+      {% endwith %}
+      <form method="post" action="/upload" enctype="multipart/form-data">
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="file" name="image_file" placeholder="Image" autofocus="">
+            </div>
+        </div>
+          <div> OR </div>
+          <div class="field">
+              <div class="control">
+                  <input class="input is-large" type="text" name="url" placeholder="Image URL" autofocus="">
+              </div>
+          </div>
+          <div class="has-text-danger">
+              Note: You MUST use publicly available images
+          </div>
+        <input type="submit" class="button is-block is-info is-large is-fullwidth" value="Upload">
+      </form>
+    </div>
+</div>
+
+{% endblock %}
